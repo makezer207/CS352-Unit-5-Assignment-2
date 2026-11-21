@@ -72,11 +72,11 @@ public class WeatherReport {
         return true;
     }
 
-    public void sortWithCollections(String sortBy) {
-        if (sortBy.equalsIgnoreCase("City")) {
+    public void sortWithCollections(String by) {
+        if (by.equalsIgnoreCase("City")) {
             Collections. sort(temperatures, new SortByCity());
         }
-        else if (sortBy.equalsIgnoreCase("High")) {
+        else if (by.equalsIgnoreCase("High")) {
             Collections.sort(temperatures, new SortByHigh());
         }
         else {
