@@ -71,7 +71,20 @@ public class WeatherReport {
         }
         return true;
     }
+
+    public void sortWithCollections(String sortBy) {
+        if (sortBy.equalsIgnoreCase("City")) {
+            Collections. sort(temperatures, new SortByCity());
+        }
+        else if (sortBy.equalsIgnoreCase("High")) {
+            Collections.sort(temperatures, new SortByHigh());
+        }
+        else {
+            throw new IllegalArgumentException("Sort by City or High Temperature");
+        }
+    }
 }
+
 /*
  * Comparator to sort by the city stored in a Temperature object
  */
