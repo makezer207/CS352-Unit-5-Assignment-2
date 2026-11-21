@@ -62,6 +62,15 @@ public class WeatherReport {
         }
         return true;
     }
+
+    public boolean isSortedByHigh() {
+        for (int i = 0; i < temperatures.size() - 1; i++) {
+            if (temperatures.get(i).getHigh() > temperatures.get(i + 1).getHigh()) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
 /*
  * Comparator to sort by the city stored in a Temperature object
