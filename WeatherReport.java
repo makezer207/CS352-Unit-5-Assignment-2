@@ -4,13 +4,29 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Comparator;
+import java.util.LinkedList;
 
 /**
- * @author John Cigas
- * Put your name and date and description here.
+ * Mitchell Kezer
+ CS352 Unit 5 Assignment 2
+ 11/22/2026
  */
 public class WeatherReport {
 
+    private LinkedList<Temperature> temperatures;
+
+    public WeatherReport() {
+        temperatures = new LinkedList<>();
+
+        temperatures.add(new Temperature("New York", "NY", 30, 80));
+        temperatures.add(new Temperature("Los Angeles", "CA", 50, 80));
+        temperatures.add(new Temperature("Chicago", "IL", 20, 80));
+        temperatures.add(new Temperature("Houston", "TX", 40, 60));
+        temperatures.add(new Temperature("Phoenix", "AZ", 60, 80));
+        temperatures.add(new Temperature("Philadelphia", "PA", 30, 50));
+        temperatures.add(new Temperature("San Antonio", "TX", 40, 60));
+        temperatures.add(new Temperature("San Diego", "CA", 50, 70));
+    }
 }
 /*
  * Comparator to sort by the city stored in a Temperature object
