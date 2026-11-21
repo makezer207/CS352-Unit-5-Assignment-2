@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Comparator;
 import java.util.LinkedList;
+import java.io.FileNotFoundException;
 
 /**
  * Mitchell Kezer
@@ -26,6 +27,31 @@ public class WeatherReport {
         temperatures.add(new Temperature("Philadelphia", "PA", 30, 50));
         temperatures.add(new Temperature("San Antonio", "TX", 40, 60));
         temperatures.add(new Temperature("San Diego", "CA", 50, 70));
+    }
+
+    public WeatherReport(String fileName) throws FileNotFoundException {
+        temperatures = new LinkedList<>();
+
+        try (Scanner input = new Scanner(new File(fileName))) {
+            if (input.hasNextLine()) {
+                input.nextLine(); // Skip the header row
+            }
+
+            while (input.hasNextLine()) {
+                String line = input.nextLine();
+
+                if (!line.trim().isEmpty()) {
+                    String[] fields = line.split(",");
+
+                    String city = fields[1].trim();
+                    int high = Integer.parseInt(fields[5].trim());
+                    int low = Integer.parseInt(fields[6].trim());
+                    String state = fields[10].trim();
+
+                    temperatures.add(new Temperature(city, state, low, high));
+                }
+            }
+        }
     }
 }
 /*
