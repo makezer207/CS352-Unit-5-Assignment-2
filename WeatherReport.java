@@ -83,6 +83,68 @@ public class WeatherReport {
             throw new IllegalArgumentException("Sort by City or High Temperature");
         }
     }
+
+    public void sortWithMerge(String by) {
+        Comparator<Temperature> comparator;
+
+        if (by.equalsIgnoreCase("City")) {
+            comparator = new SortByCity();
+        }
+        else if (by.equalsIgnoreCase("High")) {
+            comparator = new SortByHigh();
+        }
+        else {
+            throw new IllegalArgumentException("Sort by City or High Temperature");
+        }
+
+        ArrayList<Temperature> temperatureList = new ArrayList<>(temperatures);
+        ArrayList<Temperature> sortedList = mergeSort(temperatureList, comparator);
+
+        temperatures.clear();
+        temperatures.addAll(sortedList);
+    }
+
+    private ArrayList<Temperature> mergeSort(ArrayList<Temperature> list, Comparator<Temperature> comparator) {
+        if (list.size() <= 1) {
+            return list;
+        }
+
+        int mid = list.size() / 2;
+        ArrayList<Temperature> left = new ArrayList<>(list.subList(0, mid));
+        ArrayList<Temperature> right = new ArrayList<>(list.subList(mid, list.size()));
+
+        left = mergeSort(left, comparator);
+        right = mergeSort(right, comparator);
+
+        return merge(left, right, comparator);
+    }
+
+    private ArrayList<Temperature> merge(ArrayList<Temperature> left, ArrayList<Temperature> right,
+        Comparator<Temperature> comparator) {
+        ArrayList<Temperature> merged = new ArrayList<>();
+        int leftIndex = 0, rightIndex = 0;
+
+        while (leftIndex < left.size() && rightIndex < right.size()) {
+            if (comparator.compare(left.get(leftIndex), right.get(rightIndex)) <= 0) {
+                merged.add(left.get(leftIndex));
+                leftIndex++;
+            } else {
+                merged.add(right.get(rightIndex));
+                rightIndex++;
+            }
+        }
+
+        while (leftIndex < left.size()) {
+            merged.add(left.get(leftIndex));
+            leftIndex++;
+        }
+
+        while (rightIndex < right.size()) {
+            merged.add(right.get(rightIndex));
+            rightIndex++;
+        }
+
+        return merged;
 }
 
 /*
