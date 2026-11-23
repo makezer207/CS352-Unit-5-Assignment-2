@@ -1,7 +1,7 @@
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
+// import java.util.Random;
 import java.util.Scanner;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
  CS352 Unit 5 Assignment 2
  11/22/2026
  */
+
 public class WeatherReport {
 
     private LinkedList<Temperature> temperatures;
@@ -121,6 +122,7 @@ public class WeatherReport {
 
     private ArrayList<Temperature> merge(ArrayList<Temperature> left, ArrayList<Temperature> right,
         Comparator<Temperature> comparator) {
+
         ArrayList<Temperature> merged = new ArrayList<>();
         int leftIndex = 0, rightIndex = 0;
 
@@ -145,6 +147,7 @@ public class WeatherReport {
         }
 
         return merged;
+    }
 }
 
 /*
