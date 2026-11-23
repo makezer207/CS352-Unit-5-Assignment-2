@@ -38,11 +38,11 @@ public class WeatherDriver {
 			highTempMerge.sortWithMerge("High");
 			long mergeHighTempTime = System.nanoTime() - startTime;
 
-            System.out.println("\nSorting Times (in nanoseconds):");
-			System.out.println("City Collections Time: " + collectionsCityTime);
-			System.out.println("City Merge Time: " + mergeCityTime);
-			System.out.println("High Temp Collections Time: " + collectionsHighTempTime);
-			System.out.println("High Temp Merge Time: " + mergeHighTempTime);
+            System.out.println("\nSorting Times (in milliseconds):");
+			System.out.println("City Collections Time: " + collectionsCityTime / 1_000_000.0);
+			System.out.println("City Merge Time: " + mergeCityTime / 1_000_000.0);
+			System.out.println("High Temp Collections Time: " + collectionsHighTempTime / 1_000_000.0);
+			System.out.println("High Temp Merge Time: " + mergeHighTempTime / 1_000_000.0);
 
 			System.out.println("\nSorted correctly");
 			System.out.println("Collections by City: " + cityCollections.isSortedByCity());
